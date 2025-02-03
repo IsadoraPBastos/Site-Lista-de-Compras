@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block conteudo %}
+
+<title>Calcular Despesa</title>
+
+<div class="container text-center mt-5">
+    <h1>Calcular Despesa da Compra</h1>
+</div>
+<div class="container text-center m-5">
+    <form action="{{url_for('calcular_despesa')}}" method="POST">
+        <div class="row justify-content-md-center m-3">
+            <div class="col col-md-2">
+                <label for="item">Item:</label>
+            </div>
+            <div class="col col-md-2">
+                <input type="text" name="item" id="item" required/>
+            </div>
+        </div>
+        <div class="row justify-content-md-center m-3">
+            <div class="col col-md-2">
+                <label for="preco">Preço:</label>
+            </div>
+            <div class="col col-md-2">
+                <input type="text" name="preco" id="preco" required/>
+            </div>
+        </div>
+        <div class="row justify-content-md-center m-3">
+            <div class="col col-md-2">
+                <label for="qtd">Quantidade:</label>
+            </div>
+            <div class="col col-md-2">
+                <input type="text" name="qtde" id="qtd" required/>
+            </div>
+        </div>
+    </div>
+        <div class="container text-center m-5">
+            <div class="row justify-content-md-center">
+                <div class="col col-md-2">
+        <button class="btn btn-primary">Inserir</button>
+    </form>
+
+        </div>
+        <div class="col col-md-2">
+            <form action="{{url_for('limpar_lista')}}" method="POST">
+                <button class="btn btn-secondary">Limpar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="container text-center" style="width: 50%;">
+    <table class="table table-striped text-center table-hover table-bordered">
+        <tbody>
+        <tr>
+            <th>Item</th>
+            <th>Preço (Unidade)</th>
+            <th>Quantidade</th>
+            <th>Preço (Total)</th>
+        </tr>
+        <tr>
+            {% for item in lista_calculo %}
+                <td>{{item.item}}</td>
+                <td>{{item.preco}}</td>
+                <td>{{item.qtde}}</td>
+                <td>{{item.preco_total}}</td>
+            </tr>
+
+            <h1>{{item.preco_total3}}</h1>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</hr>
+
+
+
+
+
+
+{% endblock conteudo %}
